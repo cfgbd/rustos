@@ -69,6 +69,47 @@ make run arch=riscv32
 
 #### MacOS
 
+##### 1.安装Rust及Cargo
+
+```bash
+    curl https://sh.rustup.rs -sSf | sh
+```
+
+##### 2.安装Cargo工具 cargo-xbuild bootimage
+
+```bash
+    # 由于天朝特殊的网络环境，建议配置代理服务器
+    export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+    export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+    ​
+    # 安装cargo工具
+    rustup component add rust-src
+    cargo install cargo-xbuild bootimage
+```
+
+##### 3.安装QEMU
+
+```bash
+    brew tap nativeos/i386-elf-toolchain
+    brew install i386-elf-binutils
+    brew install i386-elf-gcc
+    brew install i386-elf-gdb
+    brew install qemu
+```
+
+##### 4.安装​RISCV64 GNU toolchain
+
+从[SiFive网址](https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-2018.07.0-x86_64-apple-darwin.tar.gz)中下载GNU工具链，解压后在环境变量中添加解压文件夹中的`/bin`子目录。
+
+##### 5.编译运行RustOS
+
+```bash
+git clone https://github.com/wangrunji0408/RustOS.git --recursive
+cd RustOS/kernel
+rustup override set nightly-2018-09-18
+make run arch=riscv32
+```
+
 ### 问题
 
 #### 1：由于项目目录含有空格，导致编译出错
