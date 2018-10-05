@@ -9,6 +9,66 @@
 
 ## 实验内容
 
+### 文档完善
+
+我完成了在Ubuntu Linux 18.04及MacOS下复现王润基同学工作的任务。在不同系统下配置相关环境的文档如下：
+
+#### Ubuntu Linux
+
+##### 1.安装Rust及Cargo
+
+```bash
+    curl https://sh.rustup.rs -sSf | sh
+```
+
+##### 2.安装Cargo工具 cargo-xbuild bootimage
+
+```bash
+    # 由于天朝特殊的网络环境，建议配置代理服务器
+    export RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static
+    export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
+    ​
+    # 安装cargo工具
+    rustup component add rust-src
+    cargo install cargo-xbuild bootimage
+```
+
+##### 3.安装QEMU
+
+```bash
+    sudo apt-get install qemu-system
+```
+
+##### 4.安装​RISCV64 GNU toolchain
+
+从[SiFive网址](https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-2018.07.0-x86_64-linux-ubuntu14.tar.gz)中下载GNU工具链，解压后在环境变量中添加解压文件夹中的`/bin`子目录。
+
+##### 5.build qemu for RISCV
+
+```bash
+mkdir riscv-linux
+cd riscv-linux/
+git clone --recursive https://github.com/riscv/riscv-gnu-toolchain
+sudo apt-get install autoconf automake autotools-dev curl libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev
+cd riscv-gnu-toolchain
+./configure --prefix=/opt/riscv --enable-multilib
+make newlib -j8
+make linux -j8
+export PATH=$PATH:/opt/riscv/bin
+export RISCV=/opt/risc
+```
+
+##### 6.编译运行RustOS
+
+```bash
+git clone https://github.com/wangrunji0408/RustOS.git --recursive
+cd RustOS/kernel
+rustup override set nightly-2018-09-18
+make run arch=riscv32
+```
+
+#### MacOS
+
 ### 问题
 
 #### 1：由于项目目录含有空格，导致编译出错
