@@ -22,3 +22,7 @@
 - 在【处理器架构/外围设备说明书】中，第200页
 	- 使用的USB芯片是Synopsys IP的产品，了解细节请参考DWC\_otg\_databook.pdf，可在链接页下载
 	- [书中的链接【网页】](https://www.synopsys.com/dw/ipdir.php?ds=dwc_usb_2_0_hs_otg)，此页有三个可下载的说明文档，但是文件名都对不上
+	- 三个相关文档（官网下载要填申请表）：
+		- [DesignWare IP Prototyping Kit for USB 2.0 HS OTG](usb/ip_prototyping_kit_usb2_hs_otg.pdf)
+		- [DesignWare IP Prototyping Kits](usb/ip_prototyping_kits_ds.pdf)
+		- [DesignWare USB 2.0 Controller IP](usb/dwc_usb2.pdf)
