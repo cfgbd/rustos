@@ -28,4 +28,4 @@
 		- [DesignWare IP Prototyping Kits](usb/ip_prototyping_kits_ds.pdf)
 		- [DesignWare USB 2.0 Controller IP](usb/dwc_usb2.pdf)
 
-（至此，官方文档即勘误表整理完毕。这项工作让我体会到，做调研需要有足够的耐心`=OvO=`）
+（至此，官方文档及勘误表整理完毕。这项工作让我体会到，做调研需要有足够的耐心`=OvO=`）
