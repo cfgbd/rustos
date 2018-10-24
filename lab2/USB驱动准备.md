@@ -16,6 +16,7 @@
 		- 摘要：BCM2836的底层架构和BCM2835一样，唯一显著的变化是把ARM1176JZF-S处理器换成了四核Cortex-A7处理器
 		- Also see：树莓派官网/[处理器BCM2835](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2835/README.md)
 			- 终于给了参考文档：[外围设备说明书](https://www.raspberrypi.org/documentation/hardware/raspberrypi/bcm2835/BCM2835-ARM-Peripherals.pdf)
+			- 注意：参考文档有大量的错误，这是已知的[勘误表](https://elinux.org/BCM2835_datasheet_errata)
 
 了解USB控制芯片
 
