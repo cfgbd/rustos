@@ -55,3 +55,26 @@
 	- 在github上尝试寻找树莓派上的USB驱动，发现全是基于Linux USB Framework实现的，并没有任何直接与USB Core交互的代码
 
 （这项工作让我体会到，调研一个新项目需要有足够的耐心`=OvO=`，因为调研的路上踩不到开拓者的足迹，即便找来别人的思路和线索，也不足以成为依据，还需要自己做尝试~）
+
+## <a name="Task2">任务二：</a>从Linux系统代码中找出树莓派3B+的USB Core的交互操作 ##
+
+目标：找到对应Synopsys DesignWare USB 2.0 Device Controller IP这个USB控制器的代码
+
+1. 知识准备
+	- USB的传输模式（理解transfer mode的概念）
+		- Low   Speed, 慢速 1.5 Mbits/s，在USB 1.0标准中提出，兼容至USB2.0标准
+		- Full  Speed, 全速  12 Mbits/s，在USB 1.0标准中提出，兼容至USB2.0标准
+		- High  Speed, 高速 480 Mbits/s，在USB 2.0标准中追加提出，由于处理器总线访问的限制，无法充分利用带宽
+		- Super Speed, 超速 5.0 Gbits/s，在USB 3.0标准中追加提出，USB 3.0需要设备安装后向兼容插件对旧设备兼容（backward compatible直译为后向兼容、对以往兼容，但意思是向前兼容）
+		- Super Speed+, 超速+ 10.0 Gbits/s，在USB 3.1 Gen 2标准中提出，速度是USB 3.0的二倍
+		- 总结
+			- USB 1.X Low-speed Full-speed
+			- USB 2.0 Low-speed Full-speed High-speed
+			- USB 3.0 SuperSpeed
+			- USB 3.1 SuperSpeed+
+	- USB的几个控制器标准（理解Linux的USB host driver文件）
+		- OHCI标准：Open Host Controller Interface，OHCI for USB是OHCI标准之一，仅支持USB 1.1
+		- UHCI标准：Universal Host Controller Interface，由Intel提出，支持USB 1.X，该标准和OHCI不兼容
+		- EHCI标准：Enhanced Host Controller Interface，该标准同时兼容USB 2.0、UHCI和OHCI设备
+		- xHCI标准：Extensible Host Controller Interface，该标准支持USB 3.1 SuperSpeed+, USB 3.0 SuperSpeed, USB 2.0 Low-, Full-, and High-speed, USB 1.1 Low- and Full-speed
+		- WHCI标准：Wireless Host Controller Interface
