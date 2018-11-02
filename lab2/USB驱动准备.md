@@ -78,3 +78,16 @@
 		- EHCI标准：Enhanced Host Controller Interface，该标准同时兼容USB 2.0、UHCI和OHCI设备
 		- xHCI标准：Extensible Host Controller Interface，该标准支持USB 3.1 SuperSpeed+, USB 3.0 SuperSpeed, USB 2.0 Low-, Full-, and High-speed, USB 1.1 Low- and Full-speed
 		- WHCI标准：Wireless Host Controller Interface
+2. 开始挖矿
+	1. 看芯片的规格文档，知道芯片实际上是EHCI(OTG)控制器，所以应该寻找有关EHCI Host Controller的驱动
+	2. 但是Linux系统驱动代码层次太多，还每层都有包装，需要把Linux的整套实现挖出来
+		1. 中断处理
+			- 结构irq用来处理中断
+			- `arch/arm64/kernel/irq.c`: `init_IRQ(void)`
+			- `kernel/irq/manage.c`: `request_irq(***)` `free_irq(***)`
+		2. USB Hub驱动
+			- 负责在总线上探测、读写，对1有依赖
+		3. USB Host Controller驱动
+			- 负责控制Host，对2有依赖
+		4. USB Device驱动
+			- 负责控制设备，对3有依赖
