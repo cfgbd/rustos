@@ -85,8 +85,12 @@
 			- 结构irq用来处理中断
 			- `arch/arm64/kernel/irq.c`: `init_IRQ(void)`
 			- `kernel/irq/manage.c`: `request_irq(***)` `free_irq(***)`
+			- 这块的代码调用的宏太多了，凭对中断的理解，能猜出代码意图，但不容易找到实现
+				- 因为有的宏最后引用了奇怪的东西，只能猜测这东西在汇编里
 		2. USB Hub驱动
 			- 负责在总线上探测、读写，对1有依赖
+			- `drivers/usb/host/ehci.h`: `ehci_readl(***)`
+				- 该函数为EHCI芯片的读入操作，在hub驱动中被频繁使用
 		3. USB Host Controller驱动
 			- 负责控制Host，对2有依赖
 		4. USB Device驱动
