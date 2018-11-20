@@ -91,6 +91,7 @@
 			- 负责在总线上探测、读写，对1有依赖
 			- `drivers/usb/host/ehci.h`: `ehci_readl(***)`
 				- 该函数为EHCI芯片的读入操作，在hub驱动中被频繁使用
+				- 该函数会调用`arch/arm64/...`中的函数`readl(***)`（我搜索到的其实是个宏）
 		3. USB Host Controller驱动
 			- 负责控制Host，对2有依赖
 		4. USB Device驱动

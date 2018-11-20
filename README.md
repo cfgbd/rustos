@@ -18,4 +18,4 @@
 ### 实验二
 
 * [实验二](lab2/lab2.md)
-* [USB驱动准备](lab2/USB驱动准备.md)
+* [USB驱动准备](lab2-usb/USB驱动准备.md)
