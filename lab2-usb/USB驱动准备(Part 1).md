@@ -6,7 +6,7 @@
 <!--这里空一行，不要留标题-->
 ---
 
-## <a name="Task1">任务一：</a>了解硬件配置 ##
+## <a name="task1">任务一：</a>了解硬件配置 ##
 
 - 驱动运行的平台：Raspberry PI Model 3B+
 - 处理器：Broadcom BCM2837B0, Cortex-A53 64-bit SoC @ 1.4GHz

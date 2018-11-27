@@ -6,7 +6,7 @@
 <!--这里空一行，不要留标题-->
 ---
 
-## <a name="Task2">任务二：</a>从Linux系统代码中找出树莓派3B+的USB Core的交互操作 ##
+## <a name="task2">任务二：</a>从Linux系统代码中找出树莓派3B+的USB Core的交互操作 ##
 
 目标：找到对应Synopsys DesignWare USB 2.0 Device Controller IP这个USB控制器的代码
 
