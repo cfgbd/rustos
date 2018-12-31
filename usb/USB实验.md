@@ -1,6 +1,6 @@
 # USB驱动的实验 #
 
-实验引用的USB驱动代码：
+实验引用的USB HCD驱动代码：
 
 [github: LdB-ECM/Raspberry-Pi/Arm32\\_64\\_USB](https://github.com/LdB-ECM/Raspberry-Pi/tree/master/Arm32_64_USB)
 
@@ -15,10 +15,10 @@
 	- 将标准输出用FFI对接到Rust的print!输出，以实现printf功能
 3. 在RustOS中添加了对原项目的结构的重定义，以及函数的声明
 	- `c_structure.rs, c_structure_usb_2_0.rs, c_structure_usb_1_11.rs`
-		- 使用Rust FFI重新封装了rpi-usb.h中所有的宏、枚举、结构
+		- 使用Rust FFI重新封装了rpi-usb.h中所有的常量、枚举、结构
 	- `c_api.rs`
 		- 声明了rpi-usb.h中所有函数对应的rust函数
-		- 定义函数`check_size`，进行以下检查，以消除Rust和C间封装实现的不对称：
+		- 定义函数`check_size`，以消除Rust和C间封装实现的不对称
 			- 对需要使用的特定结构，计算其大小，计算其中每个域的偏移地址
 			- 调用`usb-dependency.c::_RustOS_CheckSize`，进行相同的计算，将结果返回
 			- 一一比较每个变量的长度和位置是否一致
